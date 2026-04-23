@@ -9,7 +9,7 @@
 -- ============================================
 -- SECTION 1: DATABASE SETUP (DO NOT MODIFY)
 -- ============================================
-USE world_groupX;                     -- Replace X with your group number
+USE world_group2;                     -- Replace X with your group number
 
 -- ============================================
 -- SECTION 2: WORLD DB DATA (DO NOT MODIFY)
@@ -5354,10 +5354,43 @@ COMMIT;
 --     ('BRA', 2023,  2081.24);
 -- COMMIT;
 
--- START TRANSACTION;
--- -- [TableName1] - at least 20 rows, spread across 4+ continents
--- INSERT INTO [TableName1] (col1, col2, ...) VALUES (...);
--- COMMIT;
+START TRANSACTION;
+-- Education
+INSERT INTO Education (
+    CountryCode,
+    Year,
+    LiteracyRate,
+    PrimarySchoolEnrollmentNetPercentage,
+    SecondarySchoolEnrollmentGrossPercentage,
+    AvgYearsOfSchooling,
+    EducationExpenditurePercentage
+) VALUES 
+    ('USA', 2015, 99, 93, 98,  13.4, 5.0),
+    ('GBR', 2015, 99, 100, 130, 13.3, 5.7),
+    ('DEU', 2015, 99, 97, 102,  14.1, 4.9),
+    ('FRA', 2015, 99, 98, 110,  11.6, 5.5),
+    ('JPN', 2015, 99, 100, 102, 12.9, 3.6),
+    ('AUS', 2015, 99, 97, 131,  12.9, 5.3),
+    ('CAN', 2015, 99, 99, 110,  13.3, 5.3),
+    ('KOR', 2015, 99, 97, 97,   12.2, 4.9),
+    ('NLD', 2015, 99, 100, 132, 12.2, 5.5),
+    ('SWE', 2015, 99, 99, 133,  12.4, 6.9),
+    ('BRA', 2015, 93, 94, 102,  7.8, 6.1),
+    ('CHN', 2015, 96, 95, 92,   7.9, 4.3),
+    ('MEX', 2015, 95, 99, 90,   8.6, 5.3),
+    ('ARG', 2015, 99, 97, 107,  9.9, 5.3),
+    ('ZAF', 2015, 94, 84, 101,  10.3, 6.1),
+    ('TUR', 2015, 96, 94, 102,  8.1, 4.3),
+    ('THA', 2015, 97, 89, 81,   7.9, 4.1),
+    ('COL', 2015, 95, 91, 98,   8.3, 4.9),
+    ('IND', 2015, 74, 88, 69,   6.4, 3.8),
+    ('NGA', 2015, 60, 64, 44,   6.0, NULL),
+    ('PAK', 2015, 57, 72, 36,   4.7, 2.6),
+    ('EGY', 2015, 75, 91, 83,   7.1, 4.2),
+    ('BGD', 2015, 73, 97, 54,   5.1, 2.0),
+    ('KEN', 2015, 82, 83, 67,   6.9, 5.3),
+    ('ETH', 2015, 52, 86, 35,   2.7, 4.7);
+COMMIT;
 
 -- START TRANSACTION;
 -- -- [TableName2] - at least 20 rows, spread across 4+ continents
