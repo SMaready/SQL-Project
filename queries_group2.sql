@@ -9,8 +9,7 @@
 -- ============================================
 -- SECTION 1: DATABASE SETUP (DO NOT MODIFY)
 -- ============================================
-USE world_group2;                     -- Replace X with your group number
-
+USE world_group2;
 
 -- ============================================
 -- SECTION 2: QUERIES (MODIFY THIS SECTION)
@@ -47,11 +46,18 @@ USE world_group2;                     -- Replace X with your group number
 -- WHERE Country.Region = 'Caribbean';
 -- ============================================
 
--- Query 1 (Category: JOIN): [Describe your query here]
+-- Query 1 (Category: JOIN): This query retrieves the names of the countries along with their literacy rates for the years where the literacy rate is above 90%.
+-- It joins the Country table with the Education table on the country code.
+SELECT c.Name, e.Year, e.LiteracyRate FROM Country c
+JOIN Education e ON c.Code = e.CountryCode
+WHERE e.LiteracyRate > 90;
 
-
--- Query 2 (Category: JOIN): [Describe your query here]
-
+-- Query 2 (Category: JOIN): This query retrieves the names and populations of cities with a population greater than 1 million, along with the name and population of their respective countries. It uses a RIGHT JOIN to include all cities that meet the population criteria, even if their country information is missing.
+SELECT c.Name, c.Population AS CountryPopulation, ci.Name AS CityName, ci.Population AS CityPopulation
+FROM Country c
+--LEFT JOIN City ci ON c.Code = ci.CountryCode
+RIGHT JOIN City ci ON c.Code = ci.CountryCode
+WHERE ci.Population > 1000000;
 
 -- Query 3 (Category: JOIN): [Describe your query here]
 
@@ -75,8 +81,11 @@ USE world_group2;                     -- Replace X with your group number
 -- );
 -- ============================================
 
--- Query 5 (Category: SUBQUERIES): [Describe your query here]
-
+-- Query 5 (Category: SUBQUERIES): This query retrieves the names and codes of countries where the literacy rate is above 95%.
+SELECT Name, Code FROM Country
+WHERE Code IN (
+    SELECT CountryCode FROM Education WHERE LiteracyRate > 95
+);
 
 -- Query 6 (Category: SUBQUERIES): [Describe your query here]
 
@@ -97,7 +106,12 @@ USE world_group2;                     -- Replace X with your group number
 -- HAVING SUM(Tourism_Statistics.revenue_billion) > 100;
 -- ============================================
 
--- Query 8 (Category: AGGREGATION QUERIES): [Describe your query here]
+-- Query 8 (Category: AGGREGATION QUERIES): This query retrieves the average literacy rate and the number of countries for each continent, only including continents where the average literacy rate is above 85%.
+SELECT c.Continent, AVG(e.LiteracyRate) AS AvgLiteracyRate, COUNT(e.CountryCode) AS NumCountries
+FROM Country c
+JOIN Education e ON c.Code = e.CountryCode
+GROUP BY c.Continent
+HAVING AVG(e.LiteracyRate) > 85;
 
 
 -- Query 9 (Category: AGGREGATION QUERIES): [Describe your query here]
@@ -120,7 +134,14 @@ USE world_group2;                     -- Replace X with your group number
 -- LIMIT 5;
 -- ============================================
 
--- Query 11 (Category: RANKING QUERIES): [Describe your query here]
-
+-- Query 11 (Category: RANKING QUERIES): This query retrieves the names of cities, their respective countries, populations, and official languages for cities with a population greater than 500,000. The results are ordered by city population in descending order.
+SELECT ci.Name AS CityName, c.Name AS CountryName, ci.Population AS CityPopulation, cl.Language
+FROM City ci
+JOIN Country c ON ci.CountryCode = c.Code
+JOIN CountryLanguage cl ON c.Code = cl.CountryCode
+WHERE cl.IsOfficial = 'T' AND ci.Population > 500000
+GROUP BY ci.Name, c.Name, ci.Population, cl.Language
+ORDER BY ci.Population DESC
+LIMIT 10;
 
 -- Query 12 (Category: RANKING QUERIES): [Describe your query here]
