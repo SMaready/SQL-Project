@@ -5397,7 +5397,7 @@ START TRANSACTION;
 INSERT INTO Tourism (
     CountryCode,
     Year,
-    NumberOfTourists,
+    NumOfTourists,
     TourismRevenueInUSD,
     AvgLengthOfStayInDays
 ) VALUES
@@ -5428,7 +5428,76 @@ INSERT INTO Tourism (
     ('EGY', 2015, 9331000,   6103000000.00,  9.0);
 COMMIT;
 
--- START TRANSACTION;
--- -- [TableName3] - at least 20 rows, spread across 4+ continents
--- INSERT INTO [TableName3] (col1, col2, ...) VALUES (...);
--- COMMIT;
+ START TRANSACTION;
+ -- Infrastructure
+ INSERT INTO Infrastructure (
+	CoutnryCode,
+	Year,
+	BasicSanitationServiceUsagePercentage,
+	ElectricityAccessPercentage,
+	InternetAccessPercentage,
+	PavedRoadsPercentageOfTotalRoads
+ ) VALUES
+	('USA', 2015, 100, 100.0, 74,  66),
+    ('CAN', 2015, 100, 100.0, 89,  40),
+    ('MEX', 2015,  85,  99.8, 44,  36),
+    ('BRA', 2015,  83,  99.5, 59,  12),
+    ('ARG', 2015,  96,  99.8, 69,  30),
+    ('COL', 2015,  81,  99.0, 55,  14),
+    ('GBR', 2015, 100, 100.0, 92, 100),
+    ('DEU', 2015, 100, 100.0, 88, 100),
+    ('FRA', 2015, 100, 100.0, 85, 100),
+    ('SWE', 2015, 100, 100.0, 91, 100),
+    ('POL', 2015,  97,  99.7, 68,  70),
+    ('TUR', 2015,  94,  99.9, 54,  89),
+    ('JPN', 2015, 100, 100.0, 91,  79),
+    ('KOR', 2015, 100, 100.0, 90,  76),
+    ('CHN', 2015,  76, 100.0, 50,  54),
+    ('IND', 2015,  40,  88.5, 26,  49),
+    ('THA', 2015,  93,  99.9, 39,  98),
+    ('BGD', 2015,  46,  75.9, 14,   9),
+    ('PAK', 2015,  64,  72.1, 16,  65),
+    ('ZAF', 2015,  66,  86.0, 52,  17),
+    ('NGA', 2015,  25,  55.4, 26,  15),
+    ('EGY', 2015,  94, 100.0, 35,  81),
+    ('KEN', 2015,  29,  36.0, 26,  14),
+    ('ETH', 2015,   7,  27.3, 12,  13),
+    ('AUS', 2015, 100, 100.0, 84,  42);
+COMMIT;
+
+START TRANSACTION;
+-- ClimateData
+INSERT INTO ClimateData (
+    CountryCode,
+    Year,
+    AvgPrecipitationMillimetersPerYear,
+    AnnualFossilFuelAndIndustryCO2Emissions,
+    AgriculturalLandPercentage,
+    ForestAreaPercentage
+) VALUES
+    ('USA', 2015,  715.0,  5414069000.00, 44.4, 33.9),
+    ('CAN', 2015,  537.0,   733209000.00,  6.9, 38.2),
+    ('MEX', 2015,  752.0,   471707000.00, 54.9, 33.9),
+    ('BRA', 2015, 1761.0,   489943000.00, 32.9, 59.4),
+    ('ARG', 2015,  591.0,   196685000.00, 54.4, 10.0),
+    ('COL', 2015, 2612.0,    87021000.00, 38.5, 52.7),
+    ('GBR', 2015, 1220.0,   494119000.00, 70.4, 13.0),
+    ('DEU', 2015,  700.0,   761394000.00, 48.0, 32.7),
+    ('FRA', 2015,  867.0,   354726000.00, 52.6, 31.1),
+    ('SWE', 2015,  624.0,    52753000.00,  7.5, 68.9),
+    ('POL', 2015,  600.0,   305990000.00, 46.3, 30.8),
+    ('TUR', 2015,  593.0,   317220000.00, 49.7, 15.0),
+    ('JPN', 2015, 1668.0,  1236430000.00, 12.4, 68.5),
+    ('KOR', 2015, 1274.0,   592848000.00, 18.1, 63.4),
+    ('CHN', 2015,  645.0, 10491920000.00, 54.7, 22.0),
+    ('IND', 2015, 1083.0,  2452480000.00, 60.4, 23.7),
+    ('THA', 2015, 1622.0,   293553000.00, 43.2, 32.1),
+    ('BGD', 2015, 2666.0,    76481000.00, 70.9, 11.1),
+    ('PAK', 2015,  494.0,   185891000.00, 47.1,  3.8),
+    ('ZAF', 2015,  495.0,   470082000.00, 79.3,  7.6),
+    ('NGA', 2015, 1150.0,   116521000.00, 78.0,  7.7),
+    ('EGY', 2015,   51.0,   222423000.00,  3.6,  0.1),
+    ('KEN', 2015,  630.0,    14869000.00, 48.0,  6.2),
+    ('ETH', 2015,  848.0,    10462000.00, 35.8, 12.5),
+    ('AUS', 2015,  534.0,   415540000.00, 52.9, 16.2);
+COMMIT;
