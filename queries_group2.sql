@@ -55,7 +55,6 @@ WHERE e.LiteracyRate > 90;
 -- Query 2 (Category: JOIN): This query retrieves the names and populations of cities with a population greater than 1 million, along with the name and population of their respective countries. It uses a RIGHT JOIN to include all cities that meet the population criteria, even if their country information is missing.
 SELECT c.Name, c.Population AS CountryPopulation, ci.Name AS CityName, ci.Population AS CityPopulation
 FROM Country c
---LEFT JOIN City ci ON c.Code = ci.CountryCode
 RIGHT JOIN City ci ON c.Code = ci.CountryCode
 WHERE ci.Population > 1000000;
 

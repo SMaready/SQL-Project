@@ -122,7 +122,7 @@ CREATE TABLE Tourism (
 	CountryCode CHAR(3) NOT NULL DEFAULT '',
 	`Year` YEAR NOT NULL,
     NumOfTourists INT,
-    TourismRevenueInUSD DECIMAL(11,2),
+    TourismRevenueInUSD DECIMAL(15,2),
     AvgLengthOfStayInDays DECIMAL(3,1),
     PRIMARY KEY (ID)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -134,7 +134,7 @@ CREATE TABLE Infrastructure (
 	CountryCode CHAR(3) NOT NULL DEFAULT '',
 	`Year` YEAR NOT NULL,
     BasicSanitationServicesUsagePercentage INT,
-    ElectricityAccessPercentage DECIMAL(3,1),
+    ElectricityAccessPercentage DECIMAL(4,1),
     InternetAccessPercentage INT,
     PavedRoadsPercentageOfTotalRoads INT,
     PRIMARY KEY (ID)
@@ -147,7 +147,7 @@ CREATE TABLE ClimateData (
 	CountryCode CHAR(3) NOT NULL DEFAULT '',
 	`Year` YEAR NOT NULL,
     AvgPrecipitationMillimetersPerYear DECIMAL(5,1),
-    AnnualFossilFuelAndIndustryCO2Emissions DECIMAL(12,2),
+    AnnualFossilFuelAndIndustryCO2Emissions DECIMAL(14,2),
     AgriculturalLandPercentage DECIMAL(3,1),
     ForestAreaPercentage DECIMAL(3,1),
     PRIMARY KEY (ID)
