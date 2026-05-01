@@ -5431,9 +5431,9 @@ COMMIT;
  START TRANSACTION;
  -- Infrastructure
  INSERT INTO Infrastructure (
-	CoutnryCode,
+	CountryCode,
 	Year,
-	BasicSanitationServiceUsagePercentage,
+	BasicSanitationServicesUsagePercentage,
 	ElectricityAccessPercentage,
 	InternetAccessPercentage,
 	PavedRoadsPercentageOfTotalRoads

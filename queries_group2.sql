@@ -55,11 +55,14 @@ WHERE e.LiteracyRate > 90;
 -- Query 2 (Category: JOIN): This query retrieves the names and populations of cities with a population greater than 1 million, along with the name and population of their respective countries. It uses a RIGHT JOIN to include all cities that meet the population criteria, even if their country information is missing.
 SELECT c.Name, c.Population AS CountryPopulation, ci.Name AS CityName, ci.Population AS CityPopulation
 FROM Country c
---LEFT JOIN City ci ON c.Code = ci.CountryCode
 RIGHT JOIN City ci ON c.Code = ci.CountryCode
 WHERE ci.Population > 1000000;
 
--- Query 3 (Category: JOIN): [Describe your query here]
+-- Query 3 (Category: JOIN): This query retrieves the names of the counties with tourists staying at for at least 7 seven days, along with the tourism revenue.
+-- It joins the Country table with Tourism table using the country code.
+SELECT c.name, t.TourismRevenueInUSD, t.AvgLengthOfStayInDays FROM Country c
+JOIN Tourism t ON c.Code = t.CountryCode
+where t.AvgLengthOfStayInDays >= 7;
 
 
 -- Query 4 (Category: JOIN): [Describe your query here]
@@ -87,7 +90,11 @@ WHERE Code IN (
     SELECT CountryCode FROM Education WHERE LiteracyRate > 95
 );
 
--- Query 6 (Category: SUBQUERIES): [Describe your query here]
+-- Query 6 (Category: SUBQUERIES): This query retrieves the names and codes of countries where the access to electricity is below 30%.
+SELECT Name, Code FROM COUNTRY
+WHERE Code IN (
+    SELECT CountryCode FROM Infrastructure where ElectricityAccessPercentage < 30
+);
 
 
 -- Query 7 (Category: SUBQUERIES): [Describe your query here]
@@ -114,7 +121,12 @@ GROUP BY c.Continent
 HAVING AVG(e.LiteracyRate) > 85;
 
 
--- Query 9 (Category: AGGREGATION QUERIES): [Describe your query here]
+-- Query 9 (Category: AGGREGATION QUERIES): This query retrieves the agricultural land percentage and number of countries in each continent with more than 50% of agricultural land.
+Select c.Continent, cd.AgriculturalLandPercentage, COUNT(cd.CountryCode) AS NumCountries
+FROM Country c
+JOIN ClimateDate cd ON c.Code = cd.CountryCode
+GROUP BY c.Continent
+WHERE AgriculturalLandPercentage > 50;
 
 
 -- Query 10 (Category: AGGREGATION QUERIES): [Describe your query here]
