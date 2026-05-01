@@ -124,9 +124,9 @@ HAVING AVG(e.LiteracyRate) > 85;
 -- Query 9 (Category: AGGREGATION QUERIES): This query retrieves the agricultural land percentage and number of countries in each continent with more than 50% of agricultural land.
 Select c.Continent, cd.AgriculturalLandPercentage, COUNT(cd.CountryCode) AS NumCountries
 FROM Country c
-JOIN ClimateDate cd ON c.Code = cd.CountryCode
-GROUP BY c.Continent
-WHERE AgriculturalLandPercentage > 50;
+JOIN ClimateData cd ON c.Code = cd.CountryCode
+WHERE AgriculturalLandPercentage > 50
+GROUP BY c.Continent, cd.AgriculturalLandPercentage;
 
 
 -- Query 10 (Category: AGGREGATION QUERIES): [Describe your query here]
