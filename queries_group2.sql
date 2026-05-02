@@ -65,7 +65,10 @@ JOIN Tourism t ON c.Code = t.CountryCode
 where t.AvgLengthOfStayInDays >= 7;
 
 
--- Query 4 (Category: JOIN): [Describe your query here]
+-- Query 4 (Category: JOIN): Retrieves each country's name, continent, population, and annual CO2 emissions using a LEFT JOIN to retain countries that have no climate records on file.
+SELECT c.Name, c.Continent, c.Population, cd.AnnualFossilFuelAndIndustryCO2Emissions
+FROM Country c
+LEFT JOIN ClimateData cd ON c.Code = cd.CountryCode;
 
 
 -- ============================================
@@ -97,7 +100,14 @@ WHERE Code IN (
 );
 
 
--- Query 7 (Category: SUBQUERIES): [Describe your query here]
+-- Query 7 (Category: SUBQUERIES): Finds countries that have tourism records but no infrastructure data on file, using EXISTS and NOT EXISTS.
+SELECT Name, Code FROM Country
+WHERE EXISTS (
+    SELECT 1 FROM Tourism WHERE Tourism.CountryCode = Country.Code
+)
+AND NOT EXISTS (
+    SELECT 1 FROM Infrastructure WHERE Infrastructure.CountryCode = Country.Code
+);
 
 
 -- ============================================
@@ -129,7 +139,12 @@ WHERE AgriculturalLandPercentage > 50
 GROUP BY c.Continent, cd.AgriculturalLandPercentage;
 
 
--- Query 10 (Category: AGGREGATION QUERIES): [Describe your query here]
+-- Query 10 (Category: AGGREGATION QUERIES): Calculates total tourism revenue and average tourist count by continent, limited to continents with more than one contributing country.
+SELECT c.Continent, SUM(t.TourismRevenueInUSD) AS TotalRevenueUSD, AVG(t.NumOfTourists) AS AvgTourists, COUNT(DISTINCT t.CountryCode) AS NumCountries
+FROM Country c
+JOIN Tourism t ON c.Code = t.CountryCode
+GROUP BY c.Continent
+HAVING COUNT(DISTINCT t.CountryCode) > 1;
 
 
 -- ============================================
@@ -156,4 +171,9 @@ GROUP BY ci.Name, c.Name, ci.Population, cl.Language
 ORDER BY ci.Population DESC
 LIMIT 10;
 
--- Query 12 (Category: RANKING QUERIES): [Describe your query here]
+-- Query 12 (Category: RANKING QUERIES): Ranks countries by forest area percentage in descending order to identify the most forested nations.
+SELECT c.Name, c.Continent, cd.ForestAreaPercentage, cd.Year
+FROM Country c
+JOIN ClimateData cd ON c.Code = cd.CountryCode
+ORDER BY cd.ForestAreaPercentage DESC
+LIMIT 10;
