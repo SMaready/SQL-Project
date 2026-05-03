@@ -89,20 +89,8 @@ ALTER TABLE CountryLanguage
 --   - Appropriate data types and NOT NULL constraints
 -- ============================================
 
--- EXAMPLE (delete this before submitting):
--- CREATE TABLE Economic_Indicators (
---     indicator_id  INT          NOT NULL AUTO_INCREMENT,
---     country_code  CHAR(3)      NOT NULL,
---     year          YEAR         NOT NULL,
---     gdp_billion   DECIMAL(15,2),
---     inflation_rate DECIMAL(5,2),
---     PRIMARY KEY (indicator_id),
---     CONSTRAINT fk_econ_country
---         FOREIGN KEY (country_code) REFERENCES Country(Code)
--- );
-
 -- New Table 1: Education
--- Purpose: [Briefly describe what this table represents]
+-- Purpose: This table represents various education-related metrics for each country and year, such as literacy rates, school enrollment percentages, average years of schooling, and education expenditure as a percentage of GDP.
 CREATE TABLE Education (
 	ID INT(11) NOT NULL AUTO_INCREMENT,
     CountryCode CHAR(3) NOT NULL DEFAULT '',
@@ -116,7 +104,7 @@ CREATE TABLE Education (
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- -- New Table 2: Tourism
--- -- Purpose: [Briefly describe what this table represents]
+-- -- Purpose: This table represents various tourism-related metrics for each country and year, such as the number of tourists, tourism revenue, and average length of stay.
 CREATE TABLE Tourism (
 	ID INT(11) NOT NULL AUTO_INCREMENT,
 	CountryCode CHAR(3) NOT NULL DEFAULT '',
@@ -128,7 +116,7 @@ CREATE TABLE Tourism (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- -- New Table 3: Infrastructure
--- -- Purpose: [Briefly describe what this table represents]
+-- -- Purpose: This table represents various infrastructure-related metrics for each country and year, such as access to basic sanitation services, electricity, internet, and paved roads.
 CREATE TABLE Infrastructure (
 	ID INT(11) NOT NULL AUTO_INCREMENT,
 	CountryCode CHAR(3) NOT NULL DEFAULT '',
@@ -141,7 +129,7 @@ CREATE TABLE Infrastructure (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- -- New Table 4: Climate Data
--- -- Purpose: [Briefly describe what this table represents]
+-- -- Purpose: This table represents various climate-related metrics for each country and year, such as average annual precipitation, CO2 emissions from fossil fuels and industry, percentage of agricultural land, and percentage of forest area.
 CREATE TABLE ClimateData (
 	ID INT(11) NOT NULL AUTO_INCREMENT,
 	CountryCode CHAR(3) NOT NULL DEFAULT '',

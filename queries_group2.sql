@@ -37,13 +37,6 @@ USE world_group2;
 -- PART 1: JOIN QUERIES (4 queries)
 -- Must involve two or more tables
 -- At least one must be an OUTER JOIN (LEFT JOIN or RIGHT JOIN)
-
--- EXAMPLE (delete this before submitting):
--- Query 0: Find the GDP of countries specifically in the 'Caribbean' region
--- SELECT Country.Name, Economic_Indicators.gdp_billion
--- FROM Country
--- JOIN Economic_Indicators ON Country.Code = Economic_Indicators.country_code
--- WHERE Country.Region = 'Caribbean';
 -- ============================================
 
 -- Query 1 (Category: JOIN): This query retrieves the names of the countries along with their literacy rates for the years where the literacy rate is above 90%.
@@ -75,16 +68,6 @@ LEFT JOIN ClimateData cd ON c.Code = cd.CountryCode;
 -- PART 2: SUBQUERIES (3 queries)
 -- Must include at least one EXISTS or NOT EXISTS
 -- Must include at least one IN, NOT IN, or correlated subquery
-
--- EXAMPLE (delete this before submitting):
--- Query 0: Find countries that are major tourist hubs (over 20 million visitors) using IN
--- SELECT Country.Name
--- FROM Country
--- WHERE Country.Code IN (
---     SELECT Tourism_Statistics.country_code
---     FROM Tourism_Statistics
---     WHERE Tourism_Statistics.visitors_mil > 20
--- );
 -- ============================================
 
 -- Query 5 (Category: SUBQUERIES): This query retrieves the names and codes of countries where the literacy rate is above 95%.
@@ -109,18 +92,9 @@ AND NOT EXISTS (
     SELECT 1 FROM Infrastructure WHERE Infrastructure.CountryCode = Country.Code
 );
 
-
 -- ============================================
 -- PART 3: AGGREGATION QUERIES (3 queries)
 -- Must use GROUP BY; at least one must use HAVING
-
--- EXAMPLE (delete this before submitting):
--- Query 0: Show total tourism revenue by continent (only continents above 100 billion)
--- SELECT Country.Continent, SUM(Tourism_Statistics.revenue_billion) AS total_revenue
--- FROM Country
--- JOIN Tourism_Statistics ON Country.Code = Tourism_Statistics.country_code
--- GROUP BY Country.Continent
--- HAVING SUM(Tourism_Statistics.revenue_billion) > 100;
 -- ============================================
 
 -- Query 8 (Category: AGGREGATION QUERIES): This query retrieves the average literacy rate and the number of countries for each continent, only including continents where the average literacy rate is above 85%.
@@ -146,19 +120,10 @@ JOIN Tourism t ON c.Code = t.CountryCode
 GROUP BY c.Continent
 HAVING COUNT(DISTINCT t.CountryCode) > 1;
 
-
 -- ============================================
 -- PART 4: RANKING QUERIES (2 queries)
 -- Must use ORDER BY; LIMIT is optional
 -- Must involve at least two tables
-
--- EXAMPLE (delete this before submitting):
--- Query 0: Top 5 countries by number of tourist visitors
--- SELECT Country.Name, Tourism_Statistics.visitors_mil
--- FROM Country
--- JOIN Tourism_Statistics ON Country.Code = Tourism_Statistics.country_code
--- ORDER BY Tourism_Statistics.visitors_mil DESC
--- LIMIT 5;
 -- ============================================
 
 -- Query 11 (Category: RANKING QUERIES): This query retrieves the names of cities, their respective countries, populations, and official languages for cities with a population greater than 500,000. The results are ordered by city population in descending order.

@@ -9,7 +9,7 @@
 -- ============================================
 -- SECTION 1: DATABASE SETUP (DO NOT MODIFY)
 -- ============================================
-USE world_group2;                     -- Replace X with your group number
+USE world_group2;
 
 -- ============================================
 -- SECTION 2: WORLD DB DATA (DO NOT MODIFY)
@@ -5343,16 +5343,6 @@ COMMIT;
 -- FK values (e.g., country_code) must match
 -- existing Country codes from the World DB.
 -- ============================================
-
--- EXAMPLE (delete this before submitting):
--- START TRANSACTION;
--- INSERT INTO Economic_Indicators 
---     (country_code, year, gdp_billion)
--- VALUES
---     ('USA', 2023, 25462.70),
---     ('CHN', 2023, 17963.17),
---     ('BRA', 2023,  2081.24);
--- COMMIT;
 
 START TRANSACTION;
 -- Education
